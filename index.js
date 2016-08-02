@@ -5,7 +5,7 @@ const fs = require('fs')
 const bodyParser = require('body-parser')
 const R = require('ramda')
 
-const binary = 'wkhtmltopdf' // './bin/wkhtmltopdf-linux-amd64'
+const binary = './bin/wkhtmltopdf-linux-amd64' // 'wkhtmltopdf' // 
 
 const port = process.env.PORT || 3001
 app.set('port', port);
@@ -34,6 +34,8 @@ app.post("/", (req, res) => {
     `${binary} -s Letter ${htmlPath} ${htmlPath}.pdf`
   )
 
+  console.log({code, stdout, stderr})
+  
   setTimeout(_ => {
     exec(`rm ${htmlPath}`)
     exec(`rm ${htmlPath}.pdf`)
