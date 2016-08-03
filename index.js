@@ -31,7 +31,7 @@ app.post("/", (req, res) => {
 
   const htmlPath = req.files.html.path
   const {code, stdout, stderr} = exec(
-    `${binary} -s Letter ${htmlPath} ${htmlPath}.pdf`
+    `${binary} -s Letter -O ${req.query.o == 'landscape' ? 'landscape' : 'portrait'} ${htmlPath} ${htmlPath}.pdf`
   )
 
   console.log({code, stdout, stderr})
